@@ -18,13 +18,13 @@ DEFAULT_CONFIG = {
     },
     'charset_filename':
         'charset-labels.txt',
-    'image_shape': (150,700,3),#(max_width, max_height, 3), << devo confiar nesse comentario?? acho que não, no fnsn é (150, 600, 3) então acredito que seja height, width 
+    'image_shape': (150,400,3),#(max_width, max_height, 3), << devo confiar nesse comentario?? acho que não, no fnsn é (150, 600, 3) então acredito que seja height, width 
     'num_of_views':
         1,
     'max_sequence_length':
-        49, # TO BE CONFIGURED
+        50, # TO BE CONFIGURED
     'null_code':
-        54,
+        65,
     'items_to_descriptions': {
         'image':
             'A 3 channel color image.',
