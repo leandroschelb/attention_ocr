@@ -8,11 +8,11 @@ DEFAULT_CONFIG = {
         'number_plates', # you can change the name if you want.
     'splits': {
         'train': {
-            'size': 9000, # change according to your own train-test split
+            'size': 32000, # change according to your own train-test split
             'pattern': 'train.tfrecord'
         },
         'test': {
-            'size': 1015, # change according to your own train-test split
+            'size': 1625, # change according to your own train-test split
             'pattern': 'test.tfrecord'
         }
     },
@@ -22,9 +22,9 @@ DEFAULT_CONFIG = {
     'num_of_views':
         1,
     'max_sequence_length':
-        50, # TO BE CONFIGURED
+        68, # TO BE CONFIGURED
     'null_code':
-        69,
+        73,
     'items_to_descriptions': {
         'image':
             'A 3 channel color image.',
