@@ -70,9 +70,6 @@ flags.DEFINE_integer('total_num_replicas', 1,
 flags.DEFINE_integer('startup_delay_steps', 15,
                      'Number of training steps between replicas startup.')
 
-flags.DEFINE_integer('keep_checkpoint_max', 0,
-                     'The number of checkpoints to be saved, older one are deleted. If 0 all are saved.')
-
 flags.DEFINE_boolean('reset_train_dir', False,
                      'If true will delete all files in the train_log_dir')
 
@@ -150,7 +147,6 @@ def train(loss, init_fn, hparams):
       is_chief=(FLAGS.task == 0),
       number_of_steps=FLAGS.max_number_of_steps,
       save_summaries_secs=FLAGS.save_summaries_secs,
-      keep_checkpoint_max=FLAGS.keep_checkpoint_max,
       save_interval_secs=FLAGS.save_interval_secs,
       startup_delay_steps=startup_delay_steps,
       sync_optimizer=sync_optimizer,
