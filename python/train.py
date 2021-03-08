@@ -147,6 +147,7 @@ def train(loss, init_fn, hparams):
       is_chief=(FLAGS.task == 0),
       number_of_steps=FLAGS.max_number_of_steps,
       save_summaries_secs=FLAGS.save_summaries_secs,
+      keep_checkpoint_max=0,
       save_interval_secs=FLAGS.save_interval_secs,
       startup_delay_steps=startup_delay_steps,
       sync_optimizer=sync_optimizer,
