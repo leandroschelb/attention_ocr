@@ -72,7 +72,7 @@ def main(_):
       checkpoint_path=FLAGS.checkpoint_path,
       logdir=FLAGS.eval_log_dir,
       num_evals=FLAGS.num_batches,
-      initial_op=initial_op,
+      #initial_op=initial_op,
       eval_op=eval_ops,
       #final_op=name_to_values.values()
       session_config=session_config)
