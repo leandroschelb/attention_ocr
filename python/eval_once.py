@@ -67,15 +67,19 @@ def main(_):
   slim.get_or_create_global_step()
   session_config = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
   
-  metric_values = slim.evaluation.evaluate_once(
-      master=FLAGS.master,
-      checkpoint_path=FLAGS.checkpoint_path,
-      logdir=FLAGS.eval_log_dir,
-      num_evals=FLAGS.num_batches,
-      #initial_op=initial_op,
-      eval_op=eval_ops,
-      #final_op=name_to_values.values()
-      session_config=session_config)
+  checkpoints = ["14857", "15925", "16936", '18000', "19061"]
+
+  for checkpoint in checkpoints:
+    metric_values = slim.evaluation.evaluate_once(
+        master=FLAGS.master,
+        #checkpoint_path=FLAGS.checkpoint_path,
+        checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/train_4000_7849/model.ckpt-' + checkpoint,
+        logdir=FLAGS.eval_log_dir,
+        num_evals=FLAGS.num_batches,
+        #initial_op=initial_op,
+        eval_op=eval_ops,
+        #final_op=name_to_values.values()
+        session_config=session_config)
 
   #for metric, value in zip(names_to_values.keys(), metric_values):
   #  logging.info('Metric %s has value: %f', metric, value)
