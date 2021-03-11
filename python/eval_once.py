@@ -66,8 +66,8 @@ def main(_):
       data, endpoints, dataset.charset, is_training=False)
   slim.get_or_create_global_step()
   session_config = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
-
-  metric_values = slim.evaluate_once(
+  
+  metric_values = slim.evaluation.evaluate_once(
       master=FLAGS.master,
       checkpoint_path=FLAGS.checkpoint_path,
       logdir=FLAGS.eval_log_dir,
