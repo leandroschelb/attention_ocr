@@ -19,7 +19,7 @@ A simple usage example:
 python eval.py
 """
 import tensorflow as tf
-import tf_slim as slim
+from tensorflow.contrib import slim
 from tensorflow import app
 import os
 import re
