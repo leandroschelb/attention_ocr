@@ -21,6 +21,9 @@ python eval.py
 import tensorflow as tf
 import tf_slim as slim
 from tensorflow import app
+import os
+import re
+import numpy as np
 from tensorflow.python.platform import flags
 
 import data_provider
@@ -67,22 +70,29 @@ def main(_):
   slim.get_or_create_global_step()
   session_config = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
   
-  checkpoints = ["14857", "15925", "16936", '18000', "19061"]
+  splits = ["250", "1000", "4000", "10000"]
+    
+  for split in splits:
+    files = os.listdir('/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849')
+    checkpoints = []
+    for i, file in enumerate(files):
+        if re.match('model\.ckpt-[0-9]+',file):
+            print(re.search('.[0-9]+', file).group(0)[1:])
+            checkpoints.append(int(re.search('.[0-9]+', file).group(0)[1:]))
 
-  for checkpoint in checkpoints:
-    metric_values = slim.evaluation.evaluate_once(
-        master=FLAGS.master,
-        #checkpoint_path=FLAGS.checkpoint_path,
-        checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/train_4000_7849/model.ckpt-' + checkpoint,
-        logdir=FLAGS.eval_log_dir,
-        num_evals=FLAGS.num_batches,
-        #initial_op=initial_op,
-        eval_op=eval_ops,
-        #final_op=name_to_values.values()
-        session_config=session_config)
+    checkpoints = sorted(set(checkpoints))
 
-  #for metric, value in zip(names_to_values.keys(), metric_values):
-  #  logging.info('Metric %s has value: %f', metric, value)
+    for checkpoint in checkpoints:
+      metric_values = slim.evaluation.evaluate_once(
+          master=FLAGS.master,
+          #checkpoint_path=FLAGS.checkpoint_path,
+          checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849/model.ckpt-' + str(checkpoint),
+          logdir=FLAGS.eval_log_dir,
+          num_evals=FLAGS.num_batches,
+          #initial_op=initial_op,
+          eval_op=eval_ops,
+          #final_op=name_to_values.values()
+          session_config=session_config)
 
 if __name__ == '__main__':
   app.run()
