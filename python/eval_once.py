@@ -73,6 +73,10 @@ def main(_):
   splits = ["250", "1000", "4000", "10000"]
     
   for split in splits:
+    log_dir = FLAGS.eval_log_dir + '/' + split
+    if not tf.io.gfile.exists(log_dir):
+      tf.io.gfile.makedirs(log_dir)
+
     files = os.listdir('/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849')
     checkpoints = []
     for i, file in enumerate(files):
@@ -87,7 +91,7 @@ def main(_):
           master=FLAGS.master,
           #checkpoint_path=FLAGS.checkpoint_path,
           checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849/model.ckpt-' + str(checkpoint),
-          logdir=FLAGS.eval_log_dir,
+          logdir=log_dir,
           num_evals=FLAGS.num_batches,
           #initial_op=initial_op,
           eval_op=eval_ops,
