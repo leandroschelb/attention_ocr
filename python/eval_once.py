@@ -81,10 +81,10 @@ def main(_):
     checkpoints = []
     for i, file in enumerate(files):
         if re.match('model\.ckpt-[0-9]+',file):
-            print(re.search('.[0-9]+', file).group(0)[1:])
             checkpoints.append(int(re.search('.[0-9]+', file).group(0)[1:]))
 
     checkpoints = sorted(set(checkpoints))
+    print(checkpoints)
 
     for checkpoint in checkpoints:
       metric_values = slim.evaluation.evaluate_once(
