@@ -77,7 +77,7 @@ def main(_):
     if not tf.io.gfile.exists(log_dir):
       tf.io.gfile.makedirs(log_dir)
 
-    files = os.listdir('/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849')
+    files = os.listdir('/content/drive/MyDrive/treino_attention_ocr_uniq/'+split)
     checkpoints = []
     for i, file in enumerate(files):
         if re.match('model\.ckpt-[0-9]+',file):
@@ -90,7 +90,7 @@ def main(_):
       metric_values = slim.evaluation.evaluate_once(
           master=FLAGS.master,
           #checkpoint_path=FLAGS.checkpoint_path,
-          checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/train_'+split+'_7849/model.ckpt-' + str(checkpoint),
+          checkpoint_path='/content/drive/MyDrive/treino_attention_ocr_uniq/'+split+'/model.ckpt-' + str(checkpoint),
           logdir=log_dir,
           num_evals=FLAGS.num_batches,
           #initial_op=initial_op,
