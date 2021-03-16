@@ -151,7 +151,7 @@ def train(loss, init_fn, hparams):
       save_interval_secs=FLAGS.save_interval_secs,
       startup_delay_steps=startup_delay_steps,
       sync_optimizer=sync_optimizer,
-      saver=tf_saver.Saver(max_to_keep=0)
+      saver=tf_saver.Saver(max_to_keep=0),
       init_fn=init_fn)
 
 
