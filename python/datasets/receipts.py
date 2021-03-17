@@ -8,7 +8,7 @@ DEFAULT_CONFIG = {
         'number_plates', # you can change the name if you want.
     'splits': {
         'train': {
-            'size': 500, # change according to your own train-test split
+            'size': 1000, # change according to your own train-test split
             'pattern': 'train.tfrecord'
         },
         'test': {
