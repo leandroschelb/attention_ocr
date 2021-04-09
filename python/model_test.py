@@ -17,7 +17,7 @@ import string
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.contrib import slim
+import tf_slim as slim
 
 import model
 import data_provider

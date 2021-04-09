@@ -18,7 +18,7 @@
 import collections
 import functools
 import tensorflow as tf
-from tensorflow.contrib import slim
+import tf_slim as slim
 
 import inception_preprocessing
 

@@ -18,7 +18,7 @@
 import collections
 import os
 import tensorflow as tf
-from tensorflow.contrib import slim
+import tf_slim as slim
 
 from datasets import fsns
 from datasets import unittest_utils
