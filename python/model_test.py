@@ -193,14 +193,14 @@ class ModelTest(tf.test.TestCase):
     h_loc = [
         tf.tile(
             tf.reshape(
-                tf.contrib.layers.one_hot_encoding(
+                slim.one_hot_encoding(
                     tf.constant([i]), num_classes=h), [h, 1]), [1, w])
         for i in range(h)
     ]
     h_loc = tf.concat([tf.expand_dims(t, 2) for t in h_loc], 2)
     w_loc = [
         tf.tile(
-            tf.contrib.layers.one_hot_encoding(
+            slim.one_hot_encoding(
                 tf.constant([i]), num_classes=w),
             [h, 1]) for i in range(w)
     ]
