@@ -28,6 +28,7 @@ import logging
 import numpy as np
 import tensorflow as tf
 import tf_slim as slim
+import seq2seq
 from tensorflow.contrib.slim.nets import inception
 
 import metrics
@@ -633,7 +634,7 @@ class Model(object):
 
       logits_list = tf.unstack(chars_logits, axis=1)
       weights_list = tf.unstack(weights, axis=1)
-      loss = tf.contrib.legacy_seq2seq.sequence_loss(
+      loss = seq2seq.sequence_loss(
           logits_list,
           labels_list,
           weights_list,

@@ -39,6 +39,7 @@ import collections
 import abc
 import logging
 import numpy as np
+import seq2seq
 
 import tensorflow as tf
 
@@ -309,7 +310,7 @@ class NetSlice(SequenceLayerBase):
 
   def unroll_cell(self, decoder_inputs, initial_state, loop_function, cell):
     """See SequenceLayerBase.unroll_cell for details."""
-    return tf.contrib.legacy_seq2seq.rnn_decoder(
+    return seq2seq.rnn_decoder(
         decoder_inputs=decoder_inputs,
         initial_state=initial_state,
         cell=cell,
@@ -366,7 +367,7 @@ class Attention(SequenceLayerBase):
     return self.get_eval_input(prev, i)
 
   def unroll_cell(self, decoder_inputs, initial_state, loop_function, cell):
-    return tf.contrib.legacy_seq2seq.attention_decoder(
+    return seq2seq.attention_decoder(
         decoder_inputs=decoder_inputs,
         initial_state=initial_state,
         attention_states=self._net,
